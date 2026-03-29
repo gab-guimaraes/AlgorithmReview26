@@ -3,6 +3,8 @@ package tree;
 import com.sun.source.tree.Tree;
 
 public class CalculateHeight {
+    private static int max = 0;
+
     // N + (...)
     public static  int heightTree(TreeNode node) {
         if (node != null) {
@@ -21,6 +23,13 @@ public class CalculateHeight {
         } else {
             return 0;
         }
+    }
+
+    public static int maxNode(TreeNode node) {
+        if (node == null) return Integer.MIN_VALUE;
+        int leftMax = maxNode(node.left);
+        int rightMax = maxNode(node.right);
+        return Math.max(node.val, Math.max(leftMax, rightMax));
     }
 
     public static void main(String[] args) {
