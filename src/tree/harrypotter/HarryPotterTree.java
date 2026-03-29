@@ -15,10 +15,6 @@ public class HarryPotterTree {
     }
 
     public Optional<Tree> searchByName(Tree node, String name) {
-        // caso base null
-        //cria fila e adiciona o primeiro
-        //interage ate ela ficar vazia
-        //popula com os visitados
         if (node == null)
             return Optional.empty();
         Deque<Tree> queue = new LinkedList<>();
@@ -30,7 +26,7 @@ public class HarryPotterTree {
             }
 
             if (current.getLeft() != null) queue.add(current.getLeft());
-            if (current.getRight() != null) queue.add(current.getLeft());
+            if (current.getRight() != null) queue.add(current.getRight());
         }
         return Optional.empty();
     }
@@ -47,12 +43,11 @@ public class HarryPotterTree {
 
         Optional<Tree> searchNode = harryPotterTree.searchByName(harryTree, "Thiago Potter");
         if (searchNode.isPresent()){
-            System.out.println(searchNode.toString());
+            System.out.println(searchNode.get().getPerson().toString());
         } else {
-            System.out.println("nao encontrei");
+            System.out.println("Não Encontrei");
         }
     }
-
 }
 
 class Tree {
