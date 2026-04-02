@@ -1,5 +1,6 @@
 package tree.harrypotter;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 public class HarryPotterTree {
@@ -49,9 +50,40 @@ public class HarryPotterTree {
         return Optional.of(alivePersons);
     }
 
-    //Altura da arvore
-    //Contar nos por nivel
-    //Caminho ate o bruxo
+    public List<Person> convertToList(Tree tree) {
+        System.out.println("DFS and convert to a list...");
+        if (tree == null)
+            return Collections.emptyList();
+        ArrayList<Person> persons = new ArrayList<>();
+        Deque<Tree> stack = new ArrayDeque<>();
+        stack.addFirst(tree);
+        while (!stack.isEmpty()) {
+            Tree temporaryTree = stack.pop();
+            persons.add(temporaryTree.getPerson());
+            if (temporaryTree.getLeft() != null) stack.addFirst(temporaryTree.getLeft());
+            if (temporaryTree.getRight() != null) stack.addFirst(temporaryTree.getRight());
+        }
+        return persons;
+    }
+
+    public Optional<Person> minimalAge(Tree tree) {
+        System.out.println("minimal age of tree is...");
+        if (tree == null)
+            return Optional.empty();
+        Deque<Tree> stack = new ArrayDeque<>();
+        stack.addFirst(tree);
+        Tree youngest = tree;
+        while (!stack.isEmpty()) {
+            Tree popPerson = stack.pop();
+            if (popPerson.getPerson().getAge() < youngest.getPerson().getAge()) {
+                youngest = popPerson;
+            }
+            if (popPerson.getLeft()!= null) stack.addFirst(popPerson.getLeft());
+            if (popPerson.getRight()!= null) stack.addFirst(popPerson.getRight());
+        }
+        return Optional.of(youngest.getPerson());
+    }
+
     //Menor idade da arvore
     //usando bfs, primeiro bruxo morto
     //converter para lista
@@ -89,6 +121,7 @@ public class HarryPotterTree {
         // Execução
         harryPotterTree.printBruxos(harryTree);
         harryPotterTree.searchByAlive(harryTree);
+        System.out.println(harryPotterTree.convertToList(harryTree));
     }
 }
 
