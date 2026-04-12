@@ -1,7 +1,5 @@
 package tree;
 
-import com.sun.source.tree.Tree;
-
 public class CalculateHeight {
     private static int max = 0;
 
@@ -42,14 +40,4 @@ public class CalculateHeight {
         System.out.println(countNodes(treeNode));
     }
 
-}
-
-class TreeNode {
-    int val;
-    public TreeNode left;
-    public TreeNode right;
-
-    public TreeNode(int val) {
-        this.val = val;
-    }
 }
