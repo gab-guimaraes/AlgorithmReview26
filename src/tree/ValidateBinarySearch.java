@@ -7,10 +7,10 @@ public class ValidateBinarySearch {
 
     public boolean validate(TreeNode tree, long min, long max) {
         if (tree == null) return true;
-        if (tree.val <= min || tree.val >= max ) {
+        if (tree.data <= min || tree.data >= max ) {
             return false;
         }
-        return validate(tree.left, min, tree.val) &&
-                validate(tree.right, tree.val, max);
+        return validate(tree.left, min, tree.data) &&
+                validate(tree.right, tree.data, max);
     }
 }
