@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Deque;
 
 public class TreeNode {
-    int data;
+    public int data;
     public TreeNode left;
     public TreeNode right;
 
